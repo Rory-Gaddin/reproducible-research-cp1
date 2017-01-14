@@ -2,7 +2,7 @@
 title: "Reproducible Research Class Project 1"
 author: "Rory Gaddin"
 date: "Wednesday, January 11, 2017"
-output: html_document
+output: md_document
 ---
 
 The following report gives an analysis of the fitness data of a single anonymous
@@ -12,7 +12,7 @@ descriptive statistics relating to the number of steps walked.
 ```{r, echo=FALSE, results='hide', include=FALSE, fig.height=1000}
 
 # Firstly, read in the data set from the external file
-df <- read.csv("../data/activity.csv")
+df <- read.csv("activity.csv")
 
 # Then load dplyr to do the aggregations, etc.
 library(dplyr)
@@ -134,6 +134,8 @@ hist(
 ## Analysis
 
 ```{r, echo=FALSE}
+
+spd <- aggregate(df.cleaned$steps, by=list(date=df.cleaned$date), FUN=sum)
 
 mean.steps <- as.integer(mean(spd$x))
 median.steps <- as.integer(median(spd$x))
